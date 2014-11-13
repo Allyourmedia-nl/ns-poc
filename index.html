@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>NS-api test</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+</head>
+<body>
+<h2>Vertrektijden Arnhem</h2>
+<table id="result-vertrektijden">
+  <tr>
+    <th>Eindbestemming</th>
+    <th>Tijd</th>
+    <th>Spoor</th>
+    <th>Soort</th>
+    <th>Vervoerder</th>
+  </tr>
+</table>
+<h2>Storingen</h2>
+<table id="result-storingen">
+  <tr>
+    <th>Traject</th>
+    <th>Reden</th>
+    <th>Advies</th>
+    <th>Bericht</th>
+    <th>Datum</th>
+  </tr>
+</table>
+<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+$(document).ready(function(){
+  $.getJSON("ns-api.php",function(result){
+    $.each(result.VertrekkendeTrein, function(i, field){
+      $("#result-vertrektijden").append('<tr><td>' + field.EindBestemming + '</td><td>' + field.VertrekTijd + '</td><td>' + field.VertrekSpoor + '</td><td>' + field.TreinSoort + '</td><td>' + field.Vervoerder + '</td></tr>');
+    });
+  });
+  $.getJSON("ns-api-storingen.php",function(result){
+    $.each(result.Ongepland, function(i,field){
+      $("#result-storingen").append('<tr><td>' + field.Traject + '</td><td>' + field.Reden + '</td><td>' + field.Advies + '</td><td>' + field.Bericht + '</td><td>' + field.Datum + '</td></tr>');
+    });
+  });
+});
+</script>
+</body>
+</html>
