@@ -3,7 +3,7 @@
 	error_reporting(E_ALL);
 	require_once('includes/ns.class.php');
 
-	$ns = new NS( new curl( new user( 'HJ@allyourmedia.nl', 'UQ3d07vfmfLr9Z0Y7koCtrLWvwLQuBgBS_V01rK0ONQ0HPVN6EWNBw' ) ) );
+	$ns = new NS( new curl( new user( 'HJ@allyourmedia.nl', '' ) ) );
 
 	switch ($_GET['action']) {
 		case "vertrektijden";
