@@ -3,30 +3,30 @@
 	error_reporting(E_ALL);
 	require_once('includes/ns.class.php');
 
-	$ns = new NS( new curl( new user( 'HJ@allyourmedia.nl', '' ) ) );
+	$ns = new NS( new curl( new user( 'HJ@allyourmedia.nl', 'UQ3d07vfmfLr9Z0Y7koCtrLWvwLQuBgBS_V01rK0ONQ0HPVN6EWNBw' ) ) );
 
 	switch ($_GET['action']) {
-		case "vertrektijden";
+		case "vertrektijden":
 			$oReturn = $ns->getDepartures('Arnhem');
 			$oReturn->sRequestTitle = "Alle vertrektijden vanuit Arnhem";
 			break;
 
-		case "storingen";
+		case "storingen":
 			$oReturn = $ns->getDisturbances('Arnhem');
 			$oReturn->sRequestTitle = "Alle vertrektijden vanuit Arnhem";
 			break;
 
-		case "prijzen";
+		case "prijzen":
 			$oReturn = $ns->getPrices('Delfzijl', 'Appingedam', '',date("dmY"));
 			$oReturn->sRequestTitle = "Prijzen voor treinrit Delfzijl / Appingedam";
 			break;
 
-		case "stations";
-			$oReturn = $ns->getDepartures('Arnhem');
-			$oReturn->sRequestTitle = "Alle vertrektijden vanuit Arnhem";
+		case "stations":
+			$oReturn = $ns->getStations();
+			$oReturn->sRequestTitle = "Complete stationslijst";
 			break;
 
-		case "reisadvies";
+		case "reisadvies":
 			$oReturn = $ns->getAdvise('Delfzijl', 'Groningen', 'Appingedam', date("dmY"));
 			$oReturn->sRequestTitle = "Reisadvies Delfzijl / Groningen op " . date("dmY");
 			break;
@@ -35,7 +35,7 @@
 			die("Invalid request format");
 	}
 
-	if (is_object($oReturn) {
+	if (is_object($oReturn)) {
 		$oReturn->sRequestType = $_GET['action'];
 	} else {
 		die('NS API fail');

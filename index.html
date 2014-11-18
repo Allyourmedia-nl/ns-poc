@@ -42,31 +42,28 @@
 					$('h1#actiontitle').text(result.sRequestTitle);
 
 					switch (result.sRequestType) {
-						case "vertrektijden";
+						case "vertrektijden":
 							$.each(result.VertrekkendeTrein, function(i, field){
 								$("#results").append('<tr><td>' + field.EindBestemming + '</td><td>' + field.VertrekTijd + '</td><td>' + field.VertrekSpoor + '</td><td>' + field.TreinSoort + '</td><td>' + field.Vervoerder + '</td></tr>');
 							});
 							break;
 
-						case "storingen";
-							$oReturn = $ns->getDisturbances('Arnhem');
-							$oReturn->sRequestTitle = "Alle vertrektijden vanuit Arnhem";
-							break;
-
-						case "prijzen";
-							$oReturn = $ns->getPrices('Delfzijl', 'Appingedam', '',date("dmY"));
-							$oReturn->sRequestTitle = "Prijzen voor treinrit Delfzijl / Appingedam";
-							break;
-
-						case "stations";
+						case "storingen":
 							$.each(result.Ongepland, function(i,field){
 								$("#result-storingen").append('<tr><td>' + field.Traject + '</td><td>' + field.Reden + '</td><td>' + field.Advies + '</td><td>' + field.Bericht + '</td><td>' + field.Datum + '</td></tr>');
 							});
 							break;
 
-						case "reisadvies";
-							$oReturn = $ns->getAdvise('Delfzijl', 'Groningen', 'Appingedam', date("dmY"));
-							$oReturn->sRequestTitle = "Reisadvies Delfzijl / Groningen op " . date("dmY");
+						case "prijzen":
+							console.log(result);
+							break;
+
+						case "stations":
+							console.log(result);
+							break;
+
+						case "reisadvies":
+							console.log(result);
 							break;
 
 						default:
